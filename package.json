@@ -7,9 +7,11 @@
     "type": "git",
     "url": ""
   },
-  "main": "lib/index",
+  "main": "Gruntfile.js",
   "dependencies":{
     "handlebars": "*",
-    "i18n": "git://github.com/alex-seville/i18n-node.git"
+    "i18n": "git://github.com/alex-seville/i18n-node.git",
+    "grunt": "*",
+     "grunt-contrib-jshint": "*"
   }
 }
