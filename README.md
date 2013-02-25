@@ -37,10 +37,10 @@ grunt.initConfig({
 
 ### Options
 
--extract (Boolean), used to denote that you want to do an extract of i18n strings
--exportText (Boolean), used to denote that you want to export json to xliff.  Can be combined with `extract:true` to do an automatic extract+export
--importText (Boolean), used to denote that you want to import an xml files and have it parsed to json
--languages (Array), an array of languages in string.
+-extract (Boolean), used to denote that you want to do an extract of i18n strings  
+-exportText (Boolean), used to denote that you want to export json to xliff.  Can be combined with `extract:true` to do an automatic extract+export  
+-importText (Boolean), used to denote that you want to import an xml files and have it parsed to json  
+-languages (Array), an array of languages in string.  
 
 
 ### Usage Examples
