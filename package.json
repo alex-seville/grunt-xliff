@@ -8,10 +8,10 @@
     "url": ""
   },
   "main": "Gruntfile.js",
-  "dependencies":{
+  "dependencies": {
     "handlebars": "*",
     "i18n": "git://github.com/alex-seville/i18n-node.git",
     "grunt": "*",
-     "grunt-contrib-jshint": "*"
+    "grunt-contrib-jshint": "*"
   }
 }
