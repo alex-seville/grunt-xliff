@@ -52,7 +52,7 @@ module.exports = function(grunt) {
       realTest:{
         options:{
           extract:true,
-          exportText:true,
+          //exportText:true,
           languages:["en","fr"]
         },
         files:{

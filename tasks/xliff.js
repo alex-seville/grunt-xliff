@@ -2,7 +2,8 @@ module.exports = function(grunt) {
 
     var extract = require("../lib/extract"),
       exportLib = require("../lib/exportLib"),
-        importLib = require("../lib/importLib");
+        importLib = require("../lib/importLib"),
+            _ = require("underscore");
 
     grunt.registerMultiTask('xliff', 'Xliff tasks', function() {
         var done = this.async();
@@ -42,7 +43,14 @@ module.exports = function(grunt) {
                if (!options.exportText){
                    for(var lang in options.languages){
                      currLang = options.languages[lang];
-                     grunt.file.write(destFile+currLang+".json",JSON.stringify(result[currLang],null,'\t'));
+                     //check if file exists
+                     //if it does we merge the info
+                     //    _.extend
+                     var newLoc = result[currLang];
+                     if (grunt.file.exists(destFile+currLang+".json")){
+                        newLoc = _.extend(newLoc,grunt.file.readJSON(destFile+currLang+".json"));
+                     }
+                     grunt.file.write(destFile+currLang+".json",JSON.stringify(newLoc,null,'\t'));
                      console.log("Extract file created for",currLang);
                    }        
                    nextFileObj();
