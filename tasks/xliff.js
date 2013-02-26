@@ -28,7 +28,7 @@ module.exports = function(grunt) {
                 return nextFileObj();
             }
             var fileContents = files.map(function(filepath){
-                return grunt.file.read(filepath);
+                return [filepath,grunt.file.read(filepath)];
             });
 
             var destFile = f.dest,
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             if (options.extract){
                 grunt.log.writeln('xliff extract task.');
                 result = extract({
-                    templateList: fileContents,
+                    templateList: fileContents.map(function(item){ return item[1]; }),
                     languageArray: options.languages
                });
                if (!options.exportText){
@@ -60,11 +60,11 @@ module.exports = function(grunt) {
                 grunt.log.writeln('xliff export task.');
                 if (!result){
                     var parsed = fileContents.map(function(j){
-                        return JSON.parse(j);
+                        return [j[0],JSON.parse(j[1])];
                     });
                     result = { };
                     for (var k=0;k<parsed.length;k++){
-                        result[options.languages[k]] = parsed[k];
+                        result[parsed[k][0].replace(".json","")] = parsed[k][1];
                     }
                 }
                 var langs=Object.keys(result);
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
             if (options.importText){
                 grunt.log.writeln('xliff import task.');
                 importLib({
-                    translationFiles: fileContents,
+                    translationFiles: fileContents.map(function(item){ return item[1]; }),
                     callback: function(json){
                         var keys = Object.keys(json);
                         for(var l =0;l<keys.length;l++ ){
