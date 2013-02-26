@@ -64,7 +64,7 @@ module.exports = function(grunt) {
                     });
                     result = { };
                     for (var k=0;k<parsed.length;k++){
-                        result[parsed[k][0].replace(".json","")] = parsed[k][1];
+                        result[parsed[k][0].slice(-6,2)] = parsed[k][1];
                     }
                 }
                 var langs=Object.keys(result);
