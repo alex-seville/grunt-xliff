@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         var options = this.options({languages: ["en"]});
         grunt.verbose.writeflags(options, 'Options');
       
+      var other = grunt.file.readJSON(options.extra);
         
         grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
             var files = f.src.filter(function(filepath) {
@@ -38,7 +39,8 @@ module.exports = function(grunt) {
                 grunt.log.writeln('xliff extract task.');
                 result = extract({
                     templateList: fileContents.map(function(item){ return item[1]; }),
-                    languageArray: options.languages
+                    languageArray: options.languages,
+                    extra: other
                });
                if (!options.exportText){
                    for(var lang in options.languages){
