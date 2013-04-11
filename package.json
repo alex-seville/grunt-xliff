@@ -2,7 +2,7 @@
   "author": "alex-seville",
   "name": "grunt-xliff",
   "description": "Grunt task to extract,export and import xliff data to json.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/alex-seville/grunt-xliff.git"
