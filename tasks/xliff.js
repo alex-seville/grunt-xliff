@@ -10,9 +10,12 @@ module.exports = function(grunt) {
 
         var options = this.options({languages: ["en"]});
         grunt.verbose.writeflags(options, 'Options');
-      
-      var other = grunt.file.readJSON(options.extra);
-        
+
+        var other = {};
+        if (options.extra && !grunt.file.exists(options.extra)) {
+           other = grunt.file.readJSON(options.extra);
+        }
+
         grunt.util.async.forEachSeries(this.files, function(f, nextFileObj) {
             var files = f.src.filter(function(filepath) {
                 // Warn on and remove invalid source files (if nonull was set).
