@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         var options = this.options({languages: ["en"]});
         grunt.verbose.writeflags(options, 'Options');
 
+        var other = {};
         if (options.extra && !grunt.file.exists(options.extra)) {
            other = grunt.file.readJSON(options.extra);
         }
