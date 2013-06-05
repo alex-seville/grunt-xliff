@@ -61,13 +61,15 @@ module.exports = function(grunt) {
             if (options.exportText){
                 grunt.log.writeln('xliff export task.');
                 if (!result){
-                    var parsed = fileContents.map(function(j){
+                    var match, parsed = fileContents.map(function(j){
                         return [j[0],JSON.parse(j[1])];
                     });
                     result = { };
                     for (var k=0;k<parsed.length;k++){
-                        
-                        result[parsed[k][0].slice(-7,-5)] = parsed[k][1];
+                        match = parsed[k][0].match(/([^./]+)\.json$/);
+                        if (match) {
+                          result[match[1]] = parsed[k][1];
+                        }
                     }
                 }
                 var langs=Object.keys(result);
